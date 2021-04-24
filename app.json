@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "PlantManager é o app, que ajuda a controlar o momento que você precisa regar a sua plantinha. Não precisa se preocupar que sempre lhe avisaremos!",
+    "githubUrl": "https://github.com/ArthurB95/PlantManager"
   }
 }

@@ -9,13 +9,21 @@ import Routes from './src/routes'
 
 import { PlantProps } from './src/libs/storage';
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Jost_400Regular,
     Jost_600SemiBold
   });
 
-  useEffect(() => {
+/*   useEffect(() => {
      const subscription = Notifications.addNotificationReceivedListener(
       async notification => {
         const data = notification.request.content.data.plant as PlantProps 
@@ -27,7 +35,7 @@ export default function App() {
 
 //CANCELAR NOTIFICAÇÃO
 
-/*     async function notifications(){
+        async function notifications(){
       await Notifications.cancelAllScheduledNotificationsAsync();
 
       const data = await Notifications.getAllScheduledNotificationsAsync();
@@ -36,10 +44,11 @@ export default function App() {
 
     }
 
-    notifications(); */
+    notifications();    
+
+  }, []) */
 
 
-  }, [])
 
   if(!fontsLoaded){ //UTILIZADO PARA SEGURAR A TELA QUANDO AS FONTES AINDA NÃO FORAM CARREGADAS
 

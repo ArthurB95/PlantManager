@@ -26,7 +26,24 @@ export interface StoragePlantProps {
 
 export async function savePlant(plant: PlantProps): Promise<void> {
 
-  try {
+  let x;
+    try{
+        const {times, repeat_every} = plant.frequency;
+        const nextTime = new Date(plant.dateTimeNotification);
+        const now = new Date();
+        const startTime = new Date(String(now));
+        const endTime = new Date(String(nextTime));
+        const difference = endTime.getTime() - startTime.getTime(); // This will give difference in milliseconds
+        x= Math.round(difference / 60000);
+
+        repeat_every ==='week' ? (
+            x =((7 * 24) * 60)+x
+        ):(
+             x=(24 * 60)+x //TESTE DO DIA
+//             x=x * 60 // TESTE RÁPIDO
+        )
+
+/*   try {
 
     const nextTime = new Date(plant.dateTimeNotification);
     const now = new Date();
@@ -36,14 +53,14 @@ export async function savePlant(plant: PlantProps): Promise<void> {
       const interval = Math.trunc(7 / times);
       nextTime.setDate(now.getDate() + interval);
 
-    } /* else {
+    }  else {
       nextTime.setDate(nextTime.getDate() + 1)
 
-    } */
+    }  */
 
-    const seconds = Math.abs(
+    /* const seconds = Math.abs(
       Math.ceil(now.getTime() - nextTime.getTime()) / 1000);
-
+ */
     const notificationId = await Notifications.scheduleNotificationAsync({
       content: {
         title: 'Heeey, 🌱',
@@ -55,7 +72,7 @@ export async function savePlant(plant: PlantProps): Promise<void> {
         },
       },
       trigger: {
-        seconds: seconds < 60 ? 60 : seconds,
+        seconds: x < 60 ? 60 : x,
         repeats: true
       }
     })
