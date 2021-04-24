@@ -39,8 +39,8 @@ export async function savePlant(plant: PlantProps): Promise<void> {
         repeat_every ==='week' ? (
             x =((7 * 24) * 60)+x
         ):(
-             x=(24 * 60)+x //TESTE DO DIA
-//             x=x * 60 // TESTE RÁPIDO
+             //x=(24 * 60)+x //TESTE DO DIA
+             x=x * 60 // TESTE RÁPIDO
         )
 
 /*   try {
